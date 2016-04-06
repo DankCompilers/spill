@@ -1,9 +1,9 @@
-(((mem ebp -4) <-5)
+(((mem rsp -4) <-5)
 
- (s0 <- (mem ebp -4))
+ (s0 <- (mem rsp -4))
  (s0 &= 1)
  (cjump s0 = 0 :odd :even)
- ((mem ebp -4) <- s0)
+ ((mem rsp -4) <- s0)
 
 :odd
   (eax <- 3)
