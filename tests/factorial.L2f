@@ -1,13 +1,15 @@
 ((factorial <- 7)
+ (count <- 7)
 
  :check
- (cjump factorial = 0 :done :calculate)
+ (cjump count = 0 :done :calculate)
 
  :calculate
  (print factorial)
  (temp <- factorial)
  (temp -=1)
  (factorial *= temp)
+ (count -=1)
  (goto :check)
 
  :done
