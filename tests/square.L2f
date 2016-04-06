@@ -1,0 +1,5 @@
+((square <- 3 )
+
+ (square *= square)
+ (print square)
+ (return)) square -4 s_

@@ -1,0 +1,15 @@
+(((mem ebp -4) <- 5)
+ (expon <- 7)
+
+:check
+ (cjump expon = 1 :finish :cont)
+
+:cont
+ (s0 <- (mem ebp -4))
+ (s0 *= s0)
+ (expon -= 1)
+ (goto :check)
+
+:finish
+ (print base)
+ (return))

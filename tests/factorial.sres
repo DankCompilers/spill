@@ -1,0 +1,17 @@
+(((mem ebp -4) <- 7)
+
+:check
+(s0 <- (mem ebp -4))
+(cjump s0 = 0 :done :calculate)
+
+:calculate
+(print s0)
+(s1 <- s0)
+(s1 -= 1)
+(s0 *= s1)
+((mem ebp -4) <- s0)
+(goto :check)
+
+:done
+(return))
+

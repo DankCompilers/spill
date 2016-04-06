@@ -1,0 +1,13 @@
+((counter <- 13)
+
+ :check
+
+ (cjump counter = 0 :finish :count_more)
+
+:count_more
+ (print counter)
+ (counter -= 1)
+ (goto :check)
+
+:finish
+ (return)) counter -4 s_
