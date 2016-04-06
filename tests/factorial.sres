@@ -2,14 +2,16 @@
 
 :check
 (s0 <- (mem ebp -4))
-(cjump s0 = 0 :done :calculate)
+(s1 <- (mem ebp -4))
+(cjump s1 = 0 :done :calculate)
 
 :calculate
 (print s0)
-(s1 <- s0)
-(s1 -= 1)
+(s2 <- s0)
+(s2 -= 1)
 (s0 *= s1)
 ((mem ebp -4) <- s0)
+(s1 -= 1)
 (goto :check)
 
 :done
