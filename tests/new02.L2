@@ -1,4 +1,4 @@
-(:go
+ (:go
   (:fill_mult
    2 1	;; first is size, second is factor decoded
    ;;make array
@@ -10,6 +10,8 @@
    (rdi <- rax)
    (rdi += 8)
    (rcx <- (mem rax 0))
+
+
    (rdx <- rcx)
    (r8 <- (mem rsp 0))
 
@@ -28,30 +30,28 @@
 (goto :loop)
 
    :done
-(return))
+   (return))
 
-   (:min
-	1 1 ;; first is pointer to array, second is int
+   (:max
+	1 0 ;; first is pointer to array, second is int
 	(rcx <- (mem rdi 0))
 	(rdi += 8)
-	(s0 <- (mem rdi 0))
-    ((mem rsp 0) <- s0)
+	(curmax <- (mem rdi 0))
 
-	:min_loop
-	(cjump rcx = 0 :min_done :min_more)
+	:max_loop
+	(cjump rcx = 0 :max_done :max_more)
 
-	:min_more
+	:max_more
 	(rdx <- (mem rdi 0))
 	(rcx -= 1)
 	(rdi += 8)
-	(s1 <- (mem rsp 0))
-	(cjump rdx < s1 :replace :min_loop)
+	(cjump curmax < rdx :replace :max_loop)
 
 	:replace
-	((mem rsp 0) <- rdx)
-	(goto :min_loop)
-	:min_done
-	(rax <- (mem rsp 0))
+	(curmax <- rdx)
+	(goto :max_loop)
+	:max_done
+	(rax <- curmax)
 	(return))
 
 	 (:go
@@ -63,9 +63,9 @@
 
 	  :fill_ret1
 	  (rdi <- rax)
-	  ((mem rsp -8) <- :min_ret)
-	  (call :min 1)
-	  :min_ret
+	  ((mem rsp -8) <- :max_ret)
+	  (call :max 1)
+	  :max_ret
 
 	  (rdi <- rax)
 	  (call print 1)

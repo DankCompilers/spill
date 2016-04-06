@@ -1,4 +1,4 @@
-(:go
+ (:go
   (:go
    0 0
    ((mem rsp -8) <- :ret)
@@ -7,12 +7,12 @@
    (return))
 
   (:swap
-   0 2
+   0 1
    (rdi <- 7)
    (rsi <- 21)
-   ((mem rsp -8) <- rsi)
+   (temp <- rsi)
    (rsi <- rdi)
-   (rdi <- (mem rsp -8))
+   (rdi <- temp)
    ((mem rsp 0) <- rsi)
    (call print 1)
    (rdi <- (mem rsp 0))

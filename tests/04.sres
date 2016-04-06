@@ -1,0 +1,29 @@
+(:go
+  (:countdown
+   1 1
+   ((mem rsp 0) <- rdi)
+   (s0 <- (mem rsp 0))
+   (s0 >>= 1)
+   ((mem rsp 0) <- s0)
+   :recheck
+   (s1 <- (mem rsp 0))
+   (cjump s1 = 0 :stop :shout)
+   :shout
+   (rdi <- (mem rsp 0))
+   (rdi <<= 1)
+   (rdi += 1)
+   (call print 1)
+   (s2 <- (mem rsp 0)) 
+   (s2 -= 1)
+   ((mem rsp 0) <- s2)
+   (goto :recheck)
+   :stop
+   (return))
+
+  (:go
+   0 0
+   (rdi <- 21)
+   ((mem rsp -8 ) <- :countdown_ret)
+   (call :countdown 1)
+   :countdown_ret
+   (return)))

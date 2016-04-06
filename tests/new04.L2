@@ -1,4 +1,3 @@
-(spill
  (:go
 
   (:countdown
@@ -24,5 +23,3 @@
    (call :countdown 1)
    :countdown_ret
    (return)))
-	'count
-	's)

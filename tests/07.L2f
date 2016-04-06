@@ -1,0 +1,23 @@
+(spill
+ (:go
+  (:go
+   0 0
+   ((mem rsp -8) <- :ret)
+   (call :swap 0)
+   :ret
+   (return))
+
+  (:swap
+   0 1
+   (rdi <- 7)
+   (rsi <- 21)
+   (temp <- rsi)
+   (rsi <- rdi)
+   (rdi <- temp)
+   ((mem rsp 0) <- rsi)
+   (call print 1)
+   (rdi <- (mem rsp 0))
+   (call print 1)
+   (return)))
+ 'temp
+ 's)

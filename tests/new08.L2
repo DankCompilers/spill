@@ -1,4 +1,4 @@
-(:go
+ (:go
   (:fill_mult
    2 1	;; first is size, second is factor decoded
    ;;make array
@@ -31,19 +31,16 @@
    (return))
 
    (:concat
-	2 3 ;; first two args used for arr pointers
+	2 2 ;; first two args used for arr pointers
 	;; calc new arr size
-	(s0 <- (mem rdi 0))
-	((mem rsp -16) <- s0)
+	(arr1size <- (mem rdi 0))
 	(arr2size <- (mem rsi 0))
-	(s1 <- (mem rsp -16))
-	(s1 += arr2size)
-	((mem rsp -16) <- s1)
+	(arr1size += arr2size)
 	((mem rsp 0) <- rdi)
 	((mem rsp 8) <- rsi)
 
 	;; allocate new array
-	(rdi <- (mem rsp -16))
+	(rdi <- arr1size)
 	(rdi <<= 1)
 	(rdi += 1)
 	(rsi <- 1)

@@ -1,0 +1,43 @@
+(:go
+  (:fill_seq
+   1 1
+   ;;make array
+   (rsi <- 1)
+   (call allocate 2)
+
+   ;;initialize counters
+   (rdi <- rax)
+   (rdi += 8)
+   (s0 <- (mem rax 0))
+   ((mem rsp 0) <- s0)
+   (size <- (mem rsp 0))
+
+   :loop
+   (s1 <- (mem rsp 0))
+   (cjump s1 = 0 :done :more)
+
+   :more
+   (rsi <- size)
+   (s2 <- (mem rsp 0))
+   (rsi -= s2)
+   (rsi *= 2)
+   (rsi += 1)
+   ((mem rdi 0) <- rsi)
+   (s3 <- (mem rsp 0))
+   (s3 -= 1)
+   ((mem rsp 0) <- s3)
+   (rdi += 8)
+(goto :loop)
+
+   :done
+(return))
+
+   (:go
+	0 0
+	(rdi <- 13)
+	((mem rsp -8) <- :fill_ret)
+	(call :fill_seq 1)
+	:fill_ret
+	(rdi <- rax)
+	(call print 1)
+	(return)))
