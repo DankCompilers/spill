@@ -1,0 +1,14 @@
+((is_even <- 7)
+
+ (is_even &= 1)
+ (cjump is_even = 0 :even :odd)
+
+:odd
+ (eax <- 3)
+ (goto :return)
+
+:even
+ (eax <- 1)
+
+:return
+ (return)) is_even -4 s_

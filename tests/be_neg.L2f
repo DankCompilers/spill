@@ -1,0 +1,6 @@
+((be_negative <- 3)
+ (print be_negative)
+ (be_negative *=-1)
+ (print be_negative)
+ (eax <- be_negative)
+ (return)) be_negative -4 s_

@@ -1,0 +1,14 @@
+((base <- 5 )
+ (expon <- 7)
+ 
+:check
+ (cjump expon = 1 :finish :cont)
+
+:cont
+ (base *= base)
+ (expon -= 1)
+ (goto :check)
+
+:finish
+ (print base)
+ (return)) base -4 s_

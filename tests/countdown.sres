@@ -1,0 +1,13 @@
+(((mem ebp -4) <- 13)
+
+:check
+ (s0 <- (mem ebp -4))
+ (cjump s0 = 0 :finish :count_more)
+
+:count_more
+ (print s0)
+ (s0 -= 1)
+ ((mem ebp -4) <- s0)
+
+:finish
+ (return))
